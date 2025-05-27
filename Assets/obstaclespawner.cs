@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    [SerializeField] private Obstacle obstacle;   
+    [SerializeField] private List<Obstacle> obstacleList;   
     private float spawnInterval = 1f;
     private List<Obstacle> spawnedObstacles = new List<Obstacle>();
 
-    private float obstacleSpeed = 10f;
     private Coroutine spawnCoroutine;
     private Coroutine cleanupCoroutine;
 
@@ -18,14 +17,12 @@ public class ObstacleSpawner : MonoBehaviour
         cleanupCoroutine = StartCoroutine(CleanupObstaclesRoutine());
 
         // dirty code stuff here, but who cares..
-        for (int i = 1; i <= 3; i++) {
-            Obstacle obs = Instantiate(obstacle, new Vector3(0f, 0f, 20f * i), Quaternion.identity);
+        for (int i = 1; i <= 5; i++) {
+            int index = Random.Range(0, obstacleList.Count);
+            Obstacle obstacle = obstacleList[index];
+            Obstacle obs = Instantiate(obstacle, new Vector3(transform.position.x, 0f, 20f * i), Quaternion.identity);
             spawnedObstacles.Add(obs);
         }
-    }
-
-    void Update() {
-        obstacleSpeed += Time.deltaTime * 100f;
     }
 
     IEnumerator CleanupObstaclesRoutine()
@@ -64,6 +61,9 @@ public class ObstacleSpawner : MonoBehaviour
 
     void SpawnCube()
     {
+        int index = Random.Range(0, obstacleList.Count);
+        Obstacle obstacle = obstacleList[index];
+
         Obstacle obs = Instantiate(obstacle, transform.position, Quaternion.identity);
         spawnedObstacles.Add(obs);
     }
@@ -98,10 +98,11 @@ public class ObstacleSpawner : MonoBehaviour
         cleanupCoroutine = StartCoroutine(CleanupObstaclesRoutine());
 
         // dirty code stuff here, but who cares..
-        for (int i = 1; i <= 3; i++) {
-            Obstacle obs = Instantiate(obstacle, new Vector3(0f, 0f, 20f * i), Quaternion.identity);
+        for (int i = 1; i <= 5; i++) {
+            int index = Random.Range(0, obstacleList.Count);
+            Obstacle obstacle = obstacleList[index];
+            Obstacle obs = Instantiate(obstacle, new Vector3(transform.position.x, 0f, 20f * i), Quaternion.identity);
             spawnedObstacles.Add(obs);
-            // obs.speed = obstacleSpeed;
         }
     }
 }

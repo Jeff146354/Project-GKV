@@ -43,13 +43,6 @@ public class invertheadset : MonoBehaviour
             jumpOffset = 0f;
             velocityY = 0f;
         }
-
-        // slight rotate thing
-        // float tiltZ = Mathf.Sin(Time.time * 2f) * 2.0f; // roll (Z-axis)
-        // Quaternion tiltRot = Quaternion.Euler(0f, 0f, tiltZ);
-        // headset.transform.localRotation = originalLocalRot * tiltRot;
-
-
     }
 
     void LateUpdate()
@@ -69,7 +62,7 @@ public class invertheadset : MonoBehaviour
     }
 
     void RestartGame() {
-        Time.timeScale = 1f; // resume normal time before reload
+        Time.timeScale = 1f;
         isPaused = false;
         director.RestartGame();
     }

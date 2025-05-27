@@ -6,13 +6,16 @@ using TMPro;
 public class UIScript : MonoBehaviour
 {   
     [SerializeField] TextMeshProUGUI scoreUI;
+    [SerializeField] TextMeshProUGUI hiScoreUI;
     [SerializeField] TextMeshProUGUI restartUI;
     private float score = 0f;
+    private float hiScore = 0f;
 
 
     void Start()
     {
         restartUI.enabled = false;
+        hiScoreUI.text = "HI " + Mathf.FloorToInt(hiScore).ToString("D5");
     }
 
     // Update is called once per frame
@@ -24,6 +27,10 @@ public class UIScript : MonoBehaviour
 
     public void ShowGameOver() {
         restartUI.enabled = true;
+        if (score > hiScore) {
+            hiScore = score;
+            hiScoreUI.text = "HI " + Mathf.FloorToInt(hiScore).ToString("D5");
+        }
     }
 
     public void ResetScore() {
