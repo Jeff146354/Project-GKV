@@ -40,13 +40,12 @@ public class ObstacleSpawner : MonoBehaviour
                 }
             }
 
-            // Hapus obstacle dari list utama
             foreach (Obstacle obs in toRemove)
             {
                 spawnedObstacles.Remove(obs);
             }
 
-            yield return new WaitForSeconds(1f); // Cek setiap 1 detik
+            yield return new WaitForSeconds(1f);
         }
     }
 
