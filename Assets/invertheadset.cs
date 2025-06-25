@@ -13,6 +13,7 @@ public class invertheadset : MonoBehaviour
     private float jumpForce = 30f;
     private bool isPaused = false;
     private Quaternion originalLocalRot;
+    private AudioSource audioSource;
 
     void Enable()
     {
@@ -22,6 +23,7 @@ public class invertheadset : MonoBehaviour
 
     void Start() {
         originalLocalRot = transform.localRotation;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -33,6 +35,7 @@ public class invertheadset : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (jumpOffset <= 0f) {
                 velocityY = jumpForce;
+                audioSource.Play();
             }
         }
 
